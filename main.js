@@ -32,6 +32,7 @@ const controls = new OrbitControls(camera, c);
 //load textures
 const doughTexture = new THREE.TextureLoader().load( 'textures/dough.jpeg' );
 const napkinTexture = new THREE.TextureLoader().load( 'textures/napkin.png',);
+const noiseMap = new THREE.TextureLoader().load( 'textures/noiseMap.png',);
 
 //create renderer
 const renderer = new THREE.WebGLRenderer({
@@ -50,7 +51,7 @@ scene.add( light );
 
 //add the doughnut
 var geometry = new THREE.TorusGeometry(2.5,1,50,50);
-var material = new THREE.MeshStandardMaterial( { map:doughTexture} );
+var material = new THREE.MeshStandardMaterial( { map:doughTexture,} );
 const doughnut = new THREE.Mesh( geometry, material );
 doughnut.rotateX(Math.PI/2)
 doughnut.translateZ(-1)
@@ -58,7 +59,7 @@ scene.add( doughnut );
 
 //add the napkin
 var geometry = new THREE.PlaneGeometry(10,10);
-var material = new THREE.MeshStandardMaterial( { map:napkinTexture ,transparent: true} );
+var material = new THREE.MeshStandardMaterial( { map:napkinTexture ,transparent: true,} );
 const napkin = new THREE.Mesh( geometry, material );
 napkin.rotateX(-Math.PI/2)
 napkin.x = 0
@@ -66,9 +67,9 @@ scene.add( napkin );
 
 //create star array
 var stars = []
-for(var i = 0;i<500;i++){
-  var geometry = new THREE.SphereGeometry(0.25,20,20);
-  var material = new THREE.MeshStandardMaterial( { emissive:'white'} );
+for(var i = 0;i<1000;i++){
+  var geometry = new THREE.SphereGeometry(0.125,20,20);
+  var material = new THREE.MeshStandardMaterial( { emissive:'white',displacementMap:noiseMap,} );
   var star = new THREE.Mesh( geometry, material );
   star.position.set(rand(-50,50),rand(-50,50),rand(-50,50))
   stars.push(star)
