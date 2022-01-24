@@ -72,6 +72,7 @@ for(var i = 0;i<1000;i++){
   var material = new THREE.MeshStandardMaterial( { emissive:'white',displacementMap:noiseMap,} );
   var star = new THREE.Mesh( geometry, material );
   star.position.set(rand(-50,50),rand(-50,50),rand(-50,50))
+  star.rotateY(rand(0,Math.PI*2))
   stars.push(star)
   scene.add( stars[i] );
 }
