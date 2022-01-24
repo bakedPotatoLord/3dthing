@@ -20,7 +20,7 @@ export function rand(n1,n2){
 
 // init scene
 const scene = new THREE.Scene(c);
-scene.background = new THREE.Color('grey')
+scene.background = new THREE.Color('black')
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 camera.position.set(5,5,0)
 camera.lookAt(0,0,0)
@@ -64,16 +64,20 @@ napkin.rotateX(-Math.PI/2)
 napkin.x = 0
 scene.add( napkin );
 
-//add the stars
+//create star array
+var stars = []
 for(var i = 0;i<500;i++){
   var geometry = new THREE.SphereGeometry(0.25,20,20);
   var material = new THREE.MeshStandardMaterial( { emissive:'white'} );
   var star = new THREE.Mesh( geometry, material );
   star.position.set(rand(-50,50),rand(-50,50),rand(-50,50))
-  scene.add( star );
-  console.log('star made')
+  stars.push(star)
+  scene.add( stars[i] );
 }
 
+
+
+console.log(stars[0])
 
 function animate() {
   requestAnimationFrame( animate );
@@ -81,6 +85,13 @@ function animate() {
 
 	doughnut.rotateZ( -0.01)
 	napkin.rotateZ(0.01)
+
+  for(i in stars){
+    stars[i].translateY(rand(-0.05,-0.15))
+    if(stars[i].position.y <= -50){
+      stars[i].position.y = 50
+    }
+  }
 
 
   renderer.render( scene, camera );
