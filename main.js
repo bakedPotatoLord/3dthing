@@ -87,7 +87,7 @@ function animate() {
 	napkin.rotateZ(0.01)
 
   for(i in stars){
-    stars[i].translateY(rand(-0.05,-0.15))
+    stars[i].translateY(rand(-0.05,-0.10))
     if(stars[i].position.y <= -50){
       stars[i].position.y = 50
     }
