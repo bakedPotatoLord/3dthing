@@ -1,8 +1,4 @@
-import './style.css'
 
-import * as THREE from 'three';
-import { CubeTexture } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const c = document.getElementById('bg')
 const px =document.getElementById('px')
@@ -10,7 +6,7 @@ const px =document.getElementById('px')
 var keyArr=Array(200)
 
 //add functions
-export function rand(n1,n2){
+ function rand(n1,n2){
   if(n1>n2){
     return n2 + (Math.random()* (n1-n2) )
   }else{
@@ -26,7 +22,7 @@ camera.position.set(5,5,0)
 camera.lookAt(0,0,0)
 
 //add controls
-const controls = new OrbitControls(camera, c);
+//const controls = new OrbitControls(camera, c);
 
 
 //load textures
@@ -79,7 +75,7 @@ for(var i = 0;i<1000;i++){
 
 
 
-console.log(stars[0])
+
 
 function animate() {
   requestAnimationFrame( animate );
